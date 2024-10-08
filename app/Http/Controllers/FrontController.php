@@ -15,4 +15,12 @@ class FrontController extends Controller
     public function details(Course $course){
         return view('front.details', compact('course'));
     }
+
+    public function checkout(){
+        return view('front.checkout');
+    }
+
+    public function checkout_store(){
+        return view('front.checkout');
+    }
 }

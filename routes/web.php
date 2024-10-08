@@ -30,9 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [FrontController::class, 'checkout'])->name('profile.checkout')->middleware('role:student');
     Route::post('/checkout/store', [FrontController::class, 'checkout_store'])->name('profile.checkout.store')->middleware('role:student');
 
-    Route::get('/learning/{course}/{courseVideoId}', FrontController::class, 'learning')->name('front.learning')->middleware('role:student|teacher|owner');
+    Route::get('/learning/{course}/{courseVideoId}', [FrontController::class, 'learning'])->name('front.learning')->middleware('role:student|teacher|owner');
 
-    Route::prefix('admin')->name('admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('categories', CategoryController::class)
             ->middleware('role:owner');
 
@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('courses', CourseController::class)
             ->middleware('role:owner|teacher');
 
-        Route::resource('subscribe_transaction', SubscribeTransactionController::class)
+        Route::resource('subscribe_transactions', SubscribeTransactionController::class)
             ->middleware('role:owner');
 
         Route::get('/add/video/{course:id}', [CourseVideoController::class, 'create'])
