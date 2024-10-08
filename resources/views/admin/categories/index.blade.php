@@ -14,31 +14,37 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-5">
-                <div class="flex flex-row items-center justify-between item-card">
-                    <div class="flex flex-row items-center gap-x-3">
-                        <img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?q=80&w=3426&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfaaaHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="" class="rounded-2xl object-cover w-[120px] h-[90px]">
-                        <div class="flex flex-col">
-                            <h3 class="text-xl font-bold text-indigo-950">Jumping Jack</h3>
+                @forelse ($categories as $category)
+                    <div class="flex flex-row items-center justify-between item-card">
+                        <div class="flex flex-row items-center gap-x-3">
+                            <img src="{{ Storage::url($category->icon) }}" alt=""
+                                class="rounded-2xl object-cover w-[90px] h-[90px]">
+                            <div class="flex flex-col">
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $category->name }}</h3>
+                            </div>
+                        </div>
+                        <div class="flex-col hidden md:flex">
+                            <p class="text-sm text-slate-500">Date</p>
+                            <h3 class="text-xl font-bold text-indigo-950">12 Jan 2024</h3>
+                        </div>
+                        <div class="flex-row items-center hidden md:flex gap-x-3">
+                            <a href="#" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                                Edit
+                            </a>
+                            <form action="#" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
+                                    Delete
+                                </button>
+                            </form>
                         </div>
                     </div>
-                    <div class="flex-col hidden md:flex">
-                        <p class="text-sm text-slate-500">Date</p>
-                        <h3 class="text-xl font-bold text-indigo-950">12 Jan 2024</h3>
-                    </div>
-                    <div class="flex-row items-center hidden md:flex gap-x-3">
-                        <a href="#" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
-                            Edit
-                        </a>
-                        <form action="#" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="px-6 py-4 font-bold text-white bg-red-700 rounded-full">
-                                Delete
-                            </button>
-                        </form>
-                    </div>
-                </div>
+                @empty
+                    <p>
+                        Belum ada data
+                    </p>
+                @endforelse
             </div>
         </div>
     </div>
