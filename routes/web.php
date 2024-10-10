@@ -33,13 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/learning/{course}/{courseVideoId}', [FrontController::class, 'learning'])->name('front.learning')->middleware('role:student|teacher|owner');
 
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::resource('categories', CategoryController::class)
+        Route::resource('categories', [CategoryController::class])
             ->middleware('role:owner');
 
-        Route::resource('teachers', TeacherController::class)
+        Route::resource('teachers', [TeacherController::class])
             ->middleware('role:owner');
 
-        Route::resource('courses', CourseController::class)
+        Route::resource('courses', [CourseController::class])
             ->middleware('role:owner|teacher');
 
         Route::resource('subscribe_transactions', SubscribeTransactionController::class)
