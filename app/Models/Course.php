@@ -44,4 +44,10 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'course_students');
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        ->format('d M Y');
+    }
 }

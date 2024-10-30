@@ -74,4 +74,10 @@ class User extends Authenticatable
         $subscriptionEndDate = Carbon::parse($latestSubscription->subscription_start_date)->addMonth(1);
         return Carbon::now()->lessThanOrEqualTo($subscriptionEndDate);
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        ->format('d M Y');
+    }
 }

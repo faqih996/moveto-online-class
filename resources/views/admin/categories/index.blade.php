@@ -25,7 +25,7 @@
                         </div>
                         <div class="flex-col hidden md:flex">
                             <p class="text-sm text-slate-500">Date</p>
-                            <h3 class="text-xl font-bold text-indigo-950">12 Jan 2024</h3>
+                            <h3 class="text-xl font-bold text-indigo-950">{{ $category->created_at }}</h3>
                         </div>
                         <div class="flex-row items-center hidden md:flex gap-x-3">
                             <a href="{{ route('admin.categories.edit', $category) }}"

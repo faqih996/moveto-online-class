@@ -22,4 +22,16 @@ class SubscribeTransaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        ->format('d M Y');
+    }
+
+    public function getSubscribeStartDateAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['subscribe_start_date'])
+        ->format('d M Y');
+    }
 }

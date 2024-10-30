@@ -19,8 +19,15 @@ class Teacher extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        ->format('d M Y');
     }
 }

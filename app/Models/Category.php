@@ -21,4 +21,10 @@ class Category extends Model
     {
         return $this->hasMany(Course::class);
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        ->format('d M Y');
+    }
 }

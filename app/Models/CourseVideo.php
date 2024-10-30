@@ -20,4 +20,10 @@ class CourseVideo extends Model
     {
         return $this->belongsTo(Course::class);
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['created_at'])
+        ->format('d M Y');
+    }
 }
