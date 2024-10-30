@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-row justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex flex-row items-center justify-between">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 {{ Auth::user()->hasRole('owner') ? __('Owner Dashboard') : __('Dashboard') }}
             </h2>
         </div>
@@ -9,9 +9,9 @@
 
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
+            <div class="flex flex-col p-10 overflow-hidden bg-white shadow-sm sm:rounded-lg gap-y-5">
                 @role('owner')
-                    <div class="item-card flex flex-col gap-y-10 md:flex-row justify-between items-center">
+                    <div class="flex flex-col items-center justify-between item-card gap-y-10 md:flex-row">
                         <div class="flex flex-col gap-y-3">
                             <svg width="46" height="46" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -27,8 +27,8 @@
                             </svg>
 
                             <div>
-                                <p class="text-slate-500 text-sm">Courses</p>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{ $courses }}</h3>
+                                <p class="text-sm text-slate-500">Courses</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $courses }}</h3>
                             </div>
                         </div>
                         <div class="flex flex-col gap-y-3">
@@ -50,8 +50,8 @@
                             </svg>
 
                             <div>
-                                <p class="text-slate-500 text-sm">Transactions</p>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{ $transactions }}</h3>
+                                <p class="text-sm text-slate-500">Transactions</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $transactions }}</h3>
                             </div>
                         </div>
                         <div class="flex flex-col gap-y-3">
@@ -71,8 +71,8 @@
                                     fill="#292D32" />
                             </svg>
                             <div>
-                                <p class="text-slate-500 text-sm">Students</p>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{ $students }}</h3>
+                                <p class="text-sm text-slate-500">Students</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $students }}</h3>
                             </div>
                         </div>
                         <div class="flex flex-col gap-y-3">
@@ -90,8 +90,8 @@
                             </svg>
 
                             <div>
-                                <p class="text-slate-500 text-sm">Teachers</p>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{ $teachers }}</h3>
+                                <p class="text-sm text-slate-500">Teachers</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $teachers }}</h3>
                             </div>
                         </div>
                         <div class="flex flex-col gap-y-3">
@@ -118,14 +118,14 @@
                             </svg>
 
                             <div>
-                                <p class="text-slate-500 text-sm">Categories</p>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{ $categories }}</h3>
+                                <p class="text-sm text-slate-500">Categories</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $categories }}</h3>
                             </div>
                         </div>
                     </div>
                 @endrole
                 @role('teacher')
-                    <div class="item-card flex flex-col gap-y-10 md:flex-row justify-between items-center">
+                    <div class="flex flex-col items-center justify-between item-card gap-y-10 md:flex-row">
                         <div class="flex flex-col gap-y-3">
                             <svg width="46" height="46" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -141,8 +141,8 @@
                             </svg>
 
                             <div>
-                                <p class="text-slate-500 text-sm">Courses</p>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{ $courses }}</h3>
+                                <p class="text-sm text-slate-500">Courses</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $courses }}</h3>
                             </div>
                         </div>
                         <div class="flex flex-col gap-y-3">
@@ -162,23 +162,23 @@
                                     fill="#292D32" />
                             </svg>
                             <div>
-                                <p class="text-slate-500 text-sm">Students</p>
-                                <h3 class="text-indigo-950 text-xl font-bold">{{ $students }}</h3>
+                                <p class="text-sm text-slate-500">Students</p>
+                                <h3 class="text-xl font-bold text-indigo-950">{{ $students }}</h3>
                             </div>
                         </div>
                         <a href="{{ route('admin.courses.create') }}"
-                            class="w-fit font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                            class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full w-fit">
                             Create New Course
                         </a>
                     </div>
                 @endrole
                 @role('student')
-                    <h3 class="text-indigo-950 font-bold text-2xl">Upgrade Skills Today</h3>
-                    <p class="text-slate-500 text-base">
+                    <h3 class="text-2xl font-bold text-indigo-950">Upgrade Skills Today</h3>
+                    <p class="text-base text-slate-500">
                         Grow your career with experienced teachers in Alqowy Class.
                     </p>
                     <a href="{{ route('front.index') }}"
-                        class="w-fit font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                        class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full w-fit">
                         Explore Catalog
                     </a>
                 @endrole
