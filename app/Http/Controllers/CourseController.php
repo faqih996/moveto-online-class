@@ -82,7 +82,7 @@ class CourseController extends Controller
 
         });
 
-        return view('admin.courses.index')->with('success', 'Course created successfully');
+        return redirect()->route('admin.courses.index')->with('success', 'Course created successfully');
 
     }
 
