@@ -64,14 +64,20 @@
                             alt="{{ $subscribeTransaction->proof }}">
                     </div>
                 </div>
-                <hr class="my-5">
-                <form action="{{ route('admin.subscribe_transactions.update', $subscribeTransaction) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
-                        Approve Transaction
-                    </button>
-                </form>
+
+                @if ($subscribeTransaction->is_paid)
+                @else
+                    <hr class="my-5">
+                    <form action="{{ route('admin.subscribe_transactions.update', $subscribeTransaction) }}"
+                        method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="px-6 py-4 font-bold text-white bg-indigo-700 rounded-full">
+                            Approve Transaction
+                        </button>
+                    </form>
+                @endif
+
             </div>
         </div>
     </div>

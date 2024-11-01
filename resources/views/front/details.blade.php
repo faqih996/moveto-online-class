@@ -25,7 +25,7 @@
                     <a href="{{ route('front.index') }}" class="font-semibold">Home</a>
                 </li>
                 <li>
-                    <a href="pricing.html" class="font-semibold">Pricing</a>
+                    <a href="{{ route('front.pricing') }}" class="font-semibold">Pricing</a>
                 </li>
                 <li>
                     <a href="" class="font-semibold">Benefits</a>
@@ -34,16 +34,35 @@
                     <a href="" class="font-semibold">Stories</a>
                 </li>
             </ul>
-            <div class="flex gap-[10px] items-center">
-                <div class="flex flex-col items-end justify-center">
-                    <p class="font-semibold text-white">Hi, Annasia</p>
-                    <p class="p-[2px_10px] rounded-full bg-[#FF6129] font-semibold text-xs text-white text-center">PRO
-                    </p>
+            @auth
+                <div class="flex gap-[10px] items-center">
+                    <div class="flex flex-col items-end justify-center">
+                        <p class="font-semibold text-white">Hi, {{ Auth::user()->name }}</p>
+                        @if (Auth::user()->hasActiveSubscription())
+                            <p class="p-[2px_10px] rounded-full bg-[#FF6129] font-semibold text-xs text-white text-center">
+                                PRO
+                            </p>
+                        @endif
+                    </div>
+                    <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0">
+                        <a class="object-cover w-full h-full" href="{{ route('dashboard') }}">
+                            <img src="{{ Storage::url(Auth::user()->avatar) }}" class="object-cover w-full h-full"
+                                alt="photo">
+                        </a>
+                    </div>
                 </div>
-                <div class="w-[56px] h-[56px] overflow-hidden rounded-full flex shrink-0">
-                    <img src="{{ asset('assets/photo/photo5.png') }}" class="object-cover w-full h-full" alt="photo">
+            @endauth
+
+            @guest
+                <div class="flex gap-[10px] items-center">
+                    <a href="{{ route('register') }}"
+                        class="text-white font-semibold rounded-[30px] p-[16px_32px] ring-1 ring-white transition-all duration-300 hover:ring-2 hover:ring-[#FF6129]">Sign
+                        Up</a>
+                    <a href="{{ route('login') }}"
+                        class="text-white font-semibold rounded-[30px] p-[16px_32px] bg-[#FF6129] transition-all duration-300 hover:shadow-[0_10px_20px_0_#FF612980]">Sign
+                        In</a>
                 </div>
-            </div>
+            @endguest
         </nav>
     </div>
     <section id="video-content" class="max-w-[1100px] w-full mx-auto mt-[130px]">
@@ -67,7 +86,7 @@
                                     fill="currentColor" />
                             </svg>
                         </div>
-                        <a href="{{ route('front.details', $course) }}">
+                        <a href="">
                             <p class="font-semibold transition-all duration-300 group-hover:text-white">Course Trailer
                             </p>
                         </a>
@@ -99,6 +118,7 @@
             </div>
         </div>
     </section>
+
     <section id="Video-Resources" class="flex flex-col mt-5">
         <div class="max-w-[1100px] w-full mx-auto flex flex-col gap-3">
             <h1 class="title font-extrabold text-[30px] leading-[45px]">{{ $course->name }}</h1>
